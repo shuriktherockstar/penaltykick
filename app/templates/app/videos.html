@@ -1,0 +1,15 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+    <p style="font-size: larger;"><b>Последние видео</b></p>
+    <div class="videos-list">
+        {% for video in videos %}
+            <div class="video">
+                <iframe src="{{ video.link }}"></iframe>
+            {% if not forloop.last %}
+                <hr>
+            {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

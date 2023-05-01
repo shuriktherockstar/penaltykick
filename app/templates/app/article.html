@@ -1,0 +1,64 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+    <div class="article">
+        <p class="article-header">
+            <b>{{ article.title }}</b>
+        </p>
+        {% if article.image %}
+            <p class="article-description">
+                <b>{{ article.description }}</b>
+            </p>
+            <p class="article-image">
+                <img src="{{ article.image.url }}" alt="Не удалось загрузить изображение">
+            </p>
+        {% endif %}
+        <p class="article-content">
+            {{ article.content|linebreaksbr }}
+        </p>
+        <p style="font-size: larger">
+            <a href="/{{ league_url }}"><b>Читайте другие о новости о {{ league }}</b></a>
+        </p>
+        <p class="article-date-published">
+            Опубликовано: {{ article.date_published }}
+        </p>
+    </div>
+    <hr>
+    <div class="comments">
+        <div class="comment-form">
+            {% if form != None %}
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit">Отправить</button>
+                </form>
+            {% else %}
+                <p>
+                    <a href="{% url 'signup' %}"><b>Зарегистрируйтесь</b></a> или <a href="{% url 'signin' %}"><b>войдите</b></a>, чтобы оставлять комментарии.
+                </p>
+            {% endif %}
+        </div>
+        <div class="comments-area">
+            {% if comments %}
+                <p style="font-size: larger; line-height: 140%">
+                    <b>Комментарии:</b>
+                </p>
+                <div class="comments">
+                    {% for comment in comments %}
+                        <p style="font-size: large"><b>{{ comment.user }}</b></p>
+                        <p style="font-size: smaller">{{ comment.formatted_date }}</p>
+                        <p>{{ comment.text }}</p>
+                        {% if not forloop.last %}
+                        <hr>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p>
+                    <i class="em em-anguished"></i>
+                    Комментариев пока нет. Будьте первым!
+                </p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

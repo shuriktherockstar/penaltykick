@@ -1,0 +1,81 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+    {% if articles_carousel|length == 3 %}
+        <p style="font-size: larger"><b>Главные новости</b></p>
+        <div class="articles-carousel">
+            <div id="articlesCarousel" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    {% for article in articles_carousel %}
+                        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                            <a href="{% url 'article' article.id %}">
+                                <img src="{{ article.image.url }}" alt="">
+                            </a>
+                            <p style="font-size: larger"><a href="{% url 'article' article.id %}">
+                                <b>{{ article.title }}</b>
+                            </a></p>
+                            <p>{{ article.description }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+                <a class="carousel-control-prev" href="#articlesCarousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">предыдущая</span>
+                </a>
+                <a class="carousel-control-next" href="#articlesCarousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">следующая</span>
+                </a>
+            </div>
+        </div>
+        <hr>
+    {% endif %}
+    <div class="articles-list">
+        {% if user.username == 'admin' %}
+            <p><b><a href="{% url 'createarticle' %}">Добавить новость</a></b></p>
+        {% endif %}
+
+        {% if articles_today %}
+            <p><b>Сегодня</b></p>
+            {% for article in articles_today %}
+                <div class="article-teaser">
+                    <div class="article-time">
+                        {{ article.date_published|date:"H:i" }}
+                    </div>
+                    <div class="article-desc">
+                        <p><b><a href="{% url 'article' article.id %}">{{ article.title }}</a></b></p>
+                        <p>{{ article.description }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+        {% if articles_yesterday %}
+            <p><b>Вчера</b></p>
+            {% for article in articles_yesterday %}
+                <div class="article-teaser">
+                    <div class="article-time">
+                        {{ article.date_published|date:"H:i" }}
+                    </div>
+                    <div class="article-desc">
+                        <p><b><a href="{% url 'article' article.id %}">{{ article.title }}</a></b></p>
+                        <p>{{ article.description }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+        {% if articles_other %}
+            <p><b>Ранее</b></p>
+            {% for article in articles_other %}
+                <div class="article-teaser">
+                    <div class="article-time">
+                        {{ article.date_published|date:"d.m" }}
+                    </div>
+                    <div class="article-desc">
+                        <p><b><a href="{% url 'article' article.id %}">{{ article.title }}</a></b></p>
+                        <p>{{ article.description }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock %}

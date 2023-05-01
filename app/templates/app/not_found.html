@@ -1,0 +1,10 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+    <div class="not-found">
+        <h1 style="font-size: xxx-large;"><b>404</b></h1>
+        <p style="font-size: x-large">Мы ничего не нашли по вашему запросу
+        <i class="em em-cry" aria-role="presentation" aria-label="CRYING FACE"></i></p>
+        <a style="font-size: large" href="{% url 'home' %}">Вернуться на главную</a>
+    </div>
+{% endblock %}

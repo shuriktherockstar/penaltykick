@@ -1,0 +1,16 @@
+asgiref==3.6.0
+beautifulsoup4==4.12.2
+Django==4.2
+django-bootstrap4==23.1
+django-jquery==3.1.0
+soupsieve==2.4.1
+sqlparse==0.4.4
+tzdata==2023.3
+
+pip~=23.0.1
+wheel~=0.40.0
+cryptography~=39.0.0
+Pillow~=9.5.0
+Jinja2~=3.1.2
+setuptools~=65.5.0
+python-dotenv~=0.21.0

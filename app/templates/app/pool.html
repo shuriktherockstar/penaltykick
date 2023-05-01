@@ -1,0 +1,35 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+    {% if form != None %}
+        <form method="post">
+        {% csrf_token %}
+        {% for field in form %}
+            <p>
+                <b>{{ field.label_tag }}</b>
+                {{ field }}
+                {% if field.errors %}
+                    <span style="color: red;">
+                        {% for error in field.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </span>
+                {% endif %}
+            </p>
+        {% endfor %}
+        <button type="submit">Отправить</button>
+        </form>
+    {% else %}
+        <div id="thanks">
+            <h2 style="text-align: center"><b>Спасибо, что оставили отзыв!</b></h2>
+            <p><b>Ваше имя:</b> {{ form_data.name }}</p>
+            <p><b>Ваш пол:</b> {{ form_data.sex }}</p>
+            <p><b>Ваша любимая лига:</b> {{ form_data.favorite_league }}</p>
+            <p><b>Ваше впечатление о сайте:</b> {{ form_data.impression }}</p>
+            <p><b>Вы оценили удобство пользованием:</b> {{ form_data.usability }}</p>
+            <p><b>Вам не понравилось:</b> {{ form_data.whats_wrong }}</p>
+            <p><b>Посоветуете ли наш сайт?</b> {{ form_data.will_advise }}</p>
+            <p><b>Вы бы хотели увидеть на сайте:</b> {{ form_data.wants_to_add }}</p>
+        </div>
+    {% endif %}
+{% endblock %}
