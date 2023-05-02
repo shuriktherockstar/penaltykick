@@ -18,6 +18,9 @@ p {
     body {
         zoom: 200%;
     }
+    p {
+        margin-bottom: 2px !important;
+    }
 }
 
 @media

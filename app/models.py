@@ -28,6 +28,7 @@ class Comment(models.Model):
     date_created = models.DateTimeField(default=timezone.now)
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
 
+
 class Video(models.Model):
     title = models.CharField(max_length=1000)
     link = models.URLField()
