@@ -14,11 +14,19 @@ p {
     margin-bottom: 2%;
 }
 
+@media screen and (max-width: 1000px) {
+    body {
+        font-size: 200%;
+    }
+    .articles-carousel {
+        height: 360px !important;
+    }
+}
+
 @media
 only screen
 and (min-width: 1000px)
 and (min-device-width: 1024px)
-and (max-device-width: 1366px)
 and (-webkit-min-device-pixel-ratio: 1) {
     .page-content {
         display: flex;
