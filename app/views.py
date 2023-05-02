@@ -57,6 +57,7 @@ def articles_list(request, league_name):
     context['articles_other'] = articles_other
     return render(request, 'app/articles_list.html', context=context)
 
+
 def article(request, article_id):
     current_article = get_object_or_404(Article, id=article_id)
 
@@ -120,6 +121,7 @@ def article(request, article_id):
     context['comments'] = comments
     return render(request, 'app/article.html', context=context)
 
+
 def pool(request):
     context['title'] = 'Обратная связь'
 
@@ -164,6 +166,7 @@ def article_create(request):
     context['form'] = form
     return render(request, 'app/article_create.html', context=context)
 
+
 def videos(request):
     context['title'] = 'Видео'
 
@@ -171,6 +174,7 @@ def videos(request):
     context['videos'] = videos_list
 
     return render(request, 'app/videos.html', context=context)
+
 
 def sign_up(request):
     context['title'] = 'Регистрация'
@@ -205,6 +209,7 @@ def sign_in(request):
 def sign_out(request):
     logout(request)
     return redirect('home')
+
 
 def not_found(request, path):
     context['title'] = 'Не найдено'
