@@ -18,9 +18,6 @@ p {
     body {
         zoom: 200%;
     }
-    .articles-carousel {
-        height: 300px !important;
-    }
 }
 
 @media
