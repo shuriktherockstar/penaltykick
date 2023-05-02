@@ -16,7 +16,7 @@ p {
 
 @media screen and (max-width: 1000px) {
     body {
-        font-size: 200%;
+        zoom: 200%;
     }
     .articles-carousel {
         height: 360px !important;
